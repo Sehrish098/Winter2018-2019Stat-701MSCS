@@ -1,0 +1,17 @@
+import numpy as np
+import statsmodels.api as sm
+import matplotlib.pyplot as plt
+
+X=np.array([90,80,70,60,50,40,30,20,22])
+Y=np.array([900,800,700,600,500,400,300,200,100])
+A = np.vstack([X, np.ones(len(X))]).T
+k, n = np.linalg.lstsq(A, Y, rcond=-1)[0]
+print(k, n)
+
+plt.plot(X, Y, 'o', label='Original data', markersize=10)
+plt.plot(X, k*X + n, 'r', label='Fitted line')
+plt.ylabel("Rebots")
+plt.xlabel("Monitors")
+plt.title("Making a Regression Line")
+plt.legend()
+plt.show()
